@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713151359) do
+ActiveRecord::Schema.define(version: 20170713152316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "flashcards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "question"
+    t.text     "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_flashcards_on_user_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -22,4 +39,6 @@ ActiveRecord::Schema.define(version: 20170713151359) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "flashcards", "users"
+  add_foreign_key "tags", "users"
 end
