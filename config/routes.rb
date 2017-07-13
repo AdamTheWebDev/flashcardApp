@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/auth/github', to: 'authentication#github', format: false
   resources :tags
   resources :flashcards
   resources :users
