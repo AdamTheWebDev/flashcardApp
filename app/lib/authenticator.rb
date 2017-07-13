@@ -1,4 +1,4 @@
-class Authenticator
+lass Authenticator
   def initialize(connection = Faraday.new)
     @connection = connection
   end
